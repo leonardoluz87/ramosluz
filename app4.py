@@ -38,16 +38,16 @@ if st.button("Calcular"):
     massa_proton = 1.67e-27  # massa de um próton em kg
     velocidade_proton = 1e6  # velocidade dos prótons em m/s
 
-    # Calcula a energia cinética de dois prótons
-    energia_proton = calcular_energia_cinetica(massa_proton * 1000, velocidade_proton)  # multiplicando por 1000 para converter a massa para gramas
-
-    # Como são dois prótons, a energia total é o dobro de um
+    # Corrigido: energia cinética de um próton e o total para dois prótons
+    energia_proton = 0.5 * massa_proton * (velocidade_proton ** 2)
     energia_total_protons = 2 * energia_proton
-    massa_total_protons = 2 * (massa_proton * 1000)  # Massa total dos dois prótons em gramas
+    massa_total_protons = 2 * massa_proton  # Massa total dos dois prótons em kg
 
     # Resultados das esferas
     st.subheader("Resultados para as Esferas:")
     if massa_total_esferas > 0:
+        st.write(f"A energia cinética da primeira esfera é: {energia1:.5f} Joules")
+        st.write(f"A energia cinética da segunda esfera é: {energia2:.5f} Joules")
         st.write(f"A energia cinética total das esferas antes da colisão é: {energia_total_esferas:.5f} Joules")
         st.write(f"A massa total das esferas é: {massa_total_esferas:.5f} gramas")
     else:
@@ -55,11 +55,8 @@ if st.button("Calcular"):
 
     # Resultados dos prótons
     st.subheader("Resultados para os Prótons:")
-    if massa_total_protons > 0:
-        st.write(f"A energia cinética total de dois prótons a {velocidade_proton:.5f} m/s é: {energia_total_protons:.5f} Joules")
-        st.write(f"A massa total dos prótons é: {massa_total_protons:.5f} gramas")
-    else:
-        st.write("As massas dos prótons devem ser maiores que zero.")
+    st.write(f"A energia cinética total de dois prótons a {velocidade_proton:.2e} m/s é: {energia_total_protons:.5e} Joules")
+    st.write(f"A massa total dos prótons é: {massa_total_protons:.5e} kg")
 
     # Energia por unidade de massa
     st.subheader("Energia Cinética por Unidade de Massa:")
@@ -69,9 +66,5 @@ if st.button("Calcular"):
     else:
         st.write("Não foi possível calcular a energia cinética por unidade de massa das esferas devido à massa total zero.")
 
-    if massa_total_protons > 0:
-        energia_por_massa_protons = energia_total_protons / massa_total_protons
-        st.write(f"A energia cinética por unidade de massa dos prótons é: {energia_por_massa_protons:.5f} Joules/grama")
-    else:
-        st.write("Não foi possível calcular a energia cinética por unidade de massa dos prótons devido à massa total zero.")
-
+    energia_por_massa_protons = energia_total_protons / massa_total_protons
+    st.write(f"A energia cinética por unidade de massa dos prótons é: {energia_por_massa_protons:.5f} Joules/kg")
