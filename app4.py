@@ -36,7 +36,7 @@ if st.button("Calcular"):
 
     # Dados para a colisão de 2 prótons:
     massa_proton = 1.67e-27  # massa de um próton em kg
-    velocidade_proton = 1e6  # velocidade dos prótons em m/s
+    velocidade_proton = 300000000  # velocidade dos prótons em m/s
 
     # Corrigido: energia cinética de um próton e o total para dois prótons
     energia_proton = 0.5 * massa_proton * (velocidade_proton ** 2)
